@@ -1,0 +1,24 @@
+version: '3'
+
+networks:
+  lan:
+    
+services:
+    solr:
+      image: solr
+      container_name: solr
+      hostname: sorl
+      networks:
+        - lan
+      environment:
+        - SOLR_HOME=/opt/solr/server/solr
+      volumes:
+        - ./solr-config:/opt/solr/server/solr/configsets
+      ports:
+      - "8983:8983"
+      command:
+        - bash
+        - -c
+        - |
+          precreate-core movies /opt/solr/server/solr/configsets/movies &&
+          solr-foreground

@@ -1,0 +1,37 @@
+"config": {
+    "topics": "test.movies",
+    "solr.collection": "test_c",
+    "solr.url": "localhost:8983/solr",
+    "solr.mode": "STANDALONE",
+    "connector.class": "com.bkatwal.kafkaproject.SolrSinkConnector",
+    "tasks.max": "1",
+    "commit.within.ms": "1000",
+    "solr.writes_per_sec": "50",
+    "error.ignore_bad_offset": "true",
+    "errors.tolerance": "all",
+    "errors.deadletterqueue.topic.name": "topic2",
+    "errors.deadletterqueue.topic.replication.factor": "1",
+    "errors.log.enable": "true",
+    "errors.log.include.messages": "true"
+}
+
+
+
+{
+    "name": "solrSinkConnector",
+    "config": {
+        "topics": "test.movies",
+        "tasks.max": "2",
+        "connector.class": "com.github.jcustenborder.kafka.connect.solr.HttpSolrSinkConnector",
+        "solr.url": "http://127.0.0.1:8983/solr/twitter",
+        "solr.topic": "twitter",
+        "solr.core.name": "twitter",
+        "transforms": "prune,key,cast",
+        "transforms.prune.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+        "transforms.prune.whitelist": "CreatedAt,Id,Text,Source,Truncated",
+        "transforms.key.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+        "transforms.key.field": "Id",
+        "transforms.cast.type": "org.apache.kafka.connect.transforms.Cast$Key",
+        "transforms.cast.spec": "string"
+    }
+}

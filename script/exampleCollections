@@ -1,0 +1,112 @@
+## properties collection:
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("646a3ba97f83e0d5d056fcc2"),
+    '1': ObjectId("646a3ba97f83e0d5d056fcc3"),
+    '2': ObjectId("646a3ba97f83e0d5d056fcc4")
+  }
+}
+
+[
+  {
+    _id: ObjectId("646a3ba97f83e0d5d056fcc2"),
+    name: 'BTC',
+    description: 'BTC as an asset'
+  },
+  {
+    _id: ObjectId("646a3ba97f83e0d5d056fcc3"),
+    name: 'ETH',
+    description: 'ETH as an asset'
+  },
+  {
+    _id: ObjectId("646a3ba97f83e0d5d056fcc4"),
+    name: 'Porsche',
+    description: 'Cherry Macan'
+  }
+]
+
+
+## relations collection
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("646a452ac3a8cda5e51e71c6"),
+    '1': ObjectId("646a452ac3a8cda5e51e71c7"),
+    '2': ObjectId("646a452ac3a8cda5e51e71c8"),
+    '3': ObjectId("646a452ac3a8cda5e51e71c9")
+  }
+}
+
+
+[
+  {
+    _id: ObjectId("646a452ac3a8cda5e51e71c6"),
+    name: 'Calling',
+    description: 'calling with mobile'
+  },
+  {
+    _id: ObjectId("646a452ac3a8cda5e51e71c7"),
+    name: 'friendship',
+    description: 'being of friend of'
+  },
+  {
+    _id: ObjectId("646a452ac3a8cda5e51e71c8"),
+    name: 'romantic',
+    description: 'having affair?'
+  },
+  {
+    _id: ObjectId("646a452ac3a8cda5e51e71c9"),
+    name: 'Co-working',
+    description: 'working together'
+  }
+]
+
+
+## objects collection
+
+[
+  {
+    _id: ObjectId("646a52b71c7ff529c71ccb56"),
+    name: 'Person1',
+    description: 'A male person',
+    properties: [
+      { propertyId: ObjectId("646a3ba97f83e0d5d056fcc2"), quantity: 3 },
+      { propertyId: ObjectId("646a3ba97f83e0d5d056fcc4"), quantity: 1 }
+    ],
+    relations: [
+      {
+        relationId: ObjectId("646a452ac3a8cda5e51e71c8"),
+        quality: 'Strong',
+        relationedObjectId: ObjectId("646a52b71c7ff529c71ccb57")
+      },
+      {
+        relationId: ObjectId("646a452ac3a8cda5e51e71c9"),
+        quality: 'Weak',
+        relationedObjectId: ObjectId("646a547c28d2fab5631ac813")
+      }
+    ]
+  },
+  {
+    _id: ObjectId("646a52b71c7ff529c71ccb57"),
+    name: 'Person2',
+    description: 'A female person',
+    properties: [
+      { propertyId: ObjectId("646a3ba97f83e0d5d056fcc2"), quantity: 2 },
+      { propertyId: ObjectId("646a3ba97f83e0d5d056fcc3"), quantity: 1 }
+    ]
+  },
+  {
+    _id: ObjectId("646a547c28d2fab5631ac813"),
+    name: 'Person3',
+    description: 'A foreign person',
+    properties: [
+      { propertyId: ObjectId("646a3ba97f83e0d5d056fcc3"), quantity: 4 }
+    ]
+  }
+]
+
+
+
+

@@ -1,0 +1,81 @@
+{
+    "schema": {
+        "type": "string",
+        "optional": false
+    },
+    "payload": "{\"_id\": {\"_data\": \"82645F7E59000000012B022C0100296E5A100479D4852862264CB9889C34C2C2226B9E46645F69640064645F7E59B612B76D3EB5EFA20004\"}, \"operationType\": \"insert\", \"clusterTime\": {\"$timestamp\": {\"t\": 1683979865, \"i\": 1}}, \"wallTime\": \"2023-05-13T12:11:05.844Z\", \"fullDocument\": {\"_id\": \"645f7e59b612b76d3eb5efa2\", \"title\": \"Graph Adventure\", \"year\": \"2022\", \"director\": \"Niels De Jong\", \"duration\": \"3h 27min\", \"genre\": [\"Adventure\", \"Drama\", \"Sci-Fi\"], \"rate\": \"8\"}, \"ns\": {\"db\": \"test\", \"coll\": \"movies\"}, \"documentKey\": {\"_id\": \"645f7e59b612b76d3eb5efa2\"}}"
+}
+
+transforms=prune,key,cast
+transforms.prune.type=org.apache.kafka.connect.transforms.ReplaceField$Value
+transforms.prune.whitelist=CreatedAt,Id,Text,Source,Truncated
+transforms.key.type=org.apache.kafka.connect.transforms.ExtractField$Key
+transforms.key.field=Id
+transforms.cast.type=org.apache.kafka.connect.transforms.Cast$Key
+transforms.cast.spec=string
+
+
+
+
+"transforms": "extractFields",
+"transforms.extractFields.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+"transforms.extractFields.field": "payload",
+"transforms.extractFields.extract.field": "_id,fullDocument.title,fullDocument.genre,fullDocument.year,fullDocument.duration,fullDocument.rate"
+###
+##
+
+"transforms": "prune,key,cast",
+"transforms.prune.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+"transforms.prune.whitelist": "title,_id,genre,year,duration",
+"transforms.key.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+"transforms.key.field": "_id",
+"transforms.cast.type": "org.apache.kafka.connect.transforms.Cast$Key",
+"transforms.cast.spec": "string"
+
+
+
+
+        "transforms": "extractFields",
+        "transforms.extractFields.type": "org.apache.kafka.connect.transforms.ExtractField$Value",
+        "transforms.extractFields.field": "payload"
+
+
+
+
+
+"transforms": "prune,key",
+"transforms.prune.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+"transforms.prune.whitelist": "payload",
+"transforms.key.type": "org.apache.kafka.connect.transforms.ExtractField$Value",
+"transforms.key.field": "\"fullDocument\""
+
+
+
+
+        "transforms.prune.whitelist": "_id,title,year,director,duration,genre,rate"
+
+
+
+
+{
+  "schema": {
+    "type": "string",
+    "optional": false
+  },
+  "payload": {"_id": {"_data": "8264627327000000012B022C0100296E5A1004BFA24E771A8C4CAEB854243A9D020A8146645F69640064646273279C45C0D771FC23CC0004"}, "operationType": "insert", "clusterTime": {"$timestamp": {"t": 1684173607, "i": 1}}, "wallTime": "2023-05-15T18:00:07.808Z", "fullDocument": {"_id": "646273279c45c0d771fc23cc", "title": "Graph Adventure", "year": "2022", "director": "Niels De Jong", "duration": "3h 27min", "genre": ["Adventure", "Drama", "Sci-Fi"], "rate": "8"}, "ns": {"db": "test", "coll": "movies"}, "documentKey": {"_id": "646273279c45c0d771fc23cc"}}
+}
+
+
+
+
+
+
+
+### insert new Object with relationConstraint
+{
+  "schema": {
+    "type": "string",
+    "optional": false
+  },
+  "payload": "{\"_id\": {\"_data\": \"82646CC098000000012B022C0100296E5A100406976D675F9D4348BB91D1DFCCC50C0D46645F69640064646CC098FF632F0537D298D80004\"}, \"operationType\": \"insert\", \"clusterTime\": {\"$timestamp\": {\"t\": 1684848792, \"i\": 1}}, \"wallTime\": \"2023-05-23T13:33:12.97Z\", \"fullDocument\": {\"_id\": \"646cc098ff632f0537d298d8\", \"name\": \"Person4\", \"description\": \"A foreign person2\", \"properties\": [{\"propertyId\": \"646ca640635b6fc36d72a0c6\", \"quantity\": 100}]}, \"ns\": {\"db\": \"test\", \"coll\": \"objects\"}, \"documentKey\": {\"_id\": \"646cc098ff632f0537d298d8\"}}"
+}

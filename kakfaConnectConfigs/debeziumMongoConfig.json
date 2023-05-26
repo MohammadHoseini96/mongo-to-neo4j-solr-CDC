@@ -1,0 +1,21 @@
+{
+    "name": "debeziumMongoConnector",
+    "config": {
+        "connector.class": "io.debezium.connector.mongodb.MongoDbConnector",
+        "tasks.max": "1",
+        "mongodb.connection.string": "mongodb://mongo1:27017/?replicaSet=dbrs",
+        "mongodb.user": "debezium",
+        "mongodb.password": "mongo",
+        "topic.prefix": "dbz",
+        "database.include.list": "test",
+        "collection.include.list": "test.movies, test.objects, test.properties, test.relations",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable": "true",
+        "transforms": "unwrap",
+        "transforms.unwrap.type": "io.debezium.connector.mongodb.transforms.ExtractNewDocumentState",
+        "transforms.unwrap.add.fields": "source.db,source.rs,source.collection,",
+        "transforms.unwrap.add.headers": "op",
+        "transforms.unwrap.array.encoding": "array",
+        "transforms.unwrap.flatten.struct": "true"
+    }
+}

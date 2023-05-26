@@ -1,0 +1,19 @@
+{
+    "name": "solrSinkConnector",
+    "config": {
+        "topics": "dbz.test.movies, dbz.test.objects, dbz.test.properties, dbz.test.relations",
+        "tasks.max": "1",
+        "connector.class": "com.github.jcustenborder.kafka.connect.solr.HttpSolrSinkConnector",
+        "solr.url": "http://192.168.55.20:8983/solr/movies",
+        "solr.core.name": "movies",
+        "solr.queue.size": "1",
+        "solr.thread.count": "1",
+        "solr.commit.within": "10000",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable": "true",
+        "transforms": "dropPrefix",
+        "transforms.dropPrefix.type": "org.apache.kafka.connect.transforms.RegexRouter",
+        "transforms.dropPrefix.regex": "test.(.*)",
+        "transforms.dropPrefix.replacement": "$1"
+    }
+}

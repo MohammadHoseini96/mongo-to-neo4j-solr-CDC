@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  solr:
+    image: solr
+    container_name: solr
+    environment:
+      - SOLR_MODE=standalone
+    ports:
+      - "8983:8983"
+    volumes:
+      - ./solr-config/movies:/opt/solr/server/solr/configsets/movies
+    command:
+      - bash
+      - -c
+      - |
+        /opt/solr/bin/solr start -f -force &&
+        sleep 5 &&
+        cp /opt/solr/server/solr/configsets/_default /opt/solr/server/solr/configsets/movies &&
+        userrunner -u /opt/solr/bin/solr sorl-precreate movies
